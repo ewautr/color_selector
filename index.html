@@ -8,13 +8,53 @@
     <title>Color Selector</title>
   </head>
   <body>
+    <div class="palDiv">
+      <label for="pal">2. choose palette:</label>
+      <select name="pal" id="pal">
+        <option value="default">none</option>
+        <option value="analogus">analogus</option>
+        <option value="monochromatic">monochromatic</option>
+        <option value="triad">triad</option>
+        <option value="complementary">complementary</option>
+        <option value="compound">compound</option>
+        <option value="shades">shades</option>
+      </select>
+    </div>
     <div class="container">
-      <label for="colorInput">color:</label>
-      <input type="color" name="colorInput" id="colorInput" value="#9AEFE8" />
+      <div class="colorCircle__aside aside1"></div>
+      <!-- <p class="hex">HEX:</p>
+      <p class="rgb">RBG:</p>
+      <p class="hsl">HSL:</p> -->
+    </div>
+    <div class="container">
+      <div class="colorCircle__aside aside2"></div>
+      <!-- <p class="hex">HEX:</p>
+      <p class="rgb">RBG:</p>
+      <p class="hsl">HSL:</p> -->
+    </div>
+
+    <div class="container">
+      <div class="labelAndImput">
+        <label for="colorInput">1. choose color:</label>
+        <input type="color" name="colorInput" id="colorInput" value="#9AEFE8" />
+      </div>
       <div class="colorCircle"></div>
       <p class="hex">HEX:</p>
       <p class="rgb">RBG:</p>
       <p class="hsl">HSL:</p>
+    </div>
+
+    <div class="container">
+      <div class="colorCircle__aside aside3"></div>
+      <!-- <p class="hex">HEX:</p>
+      <p class="rgb">RBG:</p>
+      <p class="hsl">HSL:</p> -->
+    </div>
+    <div class="container">
+      <div class="colorCircle__aside aside4"></div>
+      <!-- <p class="hex">HEX:</p>
+      <p class="rgb">RBG:</p>
+      <p class="hsl">HSL:</p> -->
     </div>
 
     <script src="script.js"></script>

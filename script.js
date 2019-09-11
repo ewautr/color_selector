@@ -2,6 +2,12 @@
 
 const inputField = document.querySelector("input");
 const chosenColor = inputField.value;
+const altColors = document.querySelectorAll(".colorCircle__aside");
+const aside1 = document.querySelector(".aside1");
+const aside2 = document.querySelector(".aside2");
+const aside3 = document.querySelector(".aside3");
+const aside4 = document.querySelector(".aside4");
+const option = document.querySelector("select");
 
 inputField.addEventListener("input", init);
 
@@ -80,4 +86,71 @@ function rgbToHsl(r, g, b) {
   l = +(l * 100).toFixed(1);
 
   document.querySelector(".hsl").innerHTML = `HSL: (${h}, ${s}%, ${l}%)`;
+
+  document.querySelectorAll("#pal").forEach(option => {
+    option.addEventListener("change", changePallette);
+  });
+
+  function changePallette() {
+    if (this.value === "analogus") {
+      displayAnalogHSL(h, s, l);
+    } else if (this.value === "monochromatic") {
+      displayMonochromeHSL(h, s, l);
+    } else if (this.value === "triad") {
+      displayTriadHSL(h, s, l);
+    } else if (this.value === "complementary") {
+      displayComplementHSL(h, s, l);
+    } else if (this.value === "compound") {
+      displayCompoundHSL(h, s, l);
+    } else if (this.value === "shades") {
+      displayShadesHSL(h, s, l);
+    } else {
+      altColors.forEach(color => {
+        color.style.backgroundColor = "#27212c";
+      });
+    }
+  }
+}
+
+// ---------COLOR PALLETTE FUNCTIONS ---------------
+function displayAnalogHSL(h, s, l) {
+  altColors.forEach(color => {
+    h = h + 20;
+    color.style.backgroundColor = `hsl(${h},${s}%,${l}%)`;
+  });
+}
+
+function displayShadesHSL(h, s, l) {
+  altColors.forEach(color => {
+    l = l + 7;
+    color.style.backgroundColor = `hsl(${h},${s}%,${l}%)`;
+  });
+}
+
+function displayMonochromeHSL(h, s, l) {
+  altColors.forEach(color => {
+    h = h - 20;
+    color.style.backgroundColor = `hsl(${h},${s}%,${l}%)`;
+  });
+}
+
+function displayComplementHSL(h, s, l) {
+  aside1.style.backgroundColor = `hsl(${h + 180},${s}%,${l}%)`;
+  aside2.style.backgroundColor = `hsl(${h + 180},${s}%,${l + 20}%)`;
+  aside3.style.backgroundColor = `hsl(${h},${s}%,${l + 10}%)`;
+  aside4.style.backgroundColor = `hsl(${h},${s}%,${l + 20}%)`;
+}
+
+function displayTriadHSL(h, s, l) {
+  aside1.style.backgroundColor = `hsl(${h + 60},${s}%,${l}%)`;
+  aside2.style.backgroundColor = `hsl(${h},${s}%,${l - 7}%)`;
+  aside3.style.backgroundColor = `hsl(${h},${s}%,${l + 17}%)`;
+  aside4.style.backgroundColor = `hsl(${h + 120},${s}%,${l}%)`;
+}
+
+function displayCompoundHSL(h, s, l) {
+  aside1.style.backgroundColor = `hsl(${h + 180},${s}%,${l}%)`;
+  aside2.style.backgroundColor = `hsl(${h + 180},${s - 50}%,${l}%)`;
+  aside3.style.backgroundColor = `hsl(${h + 20},${s}%,${l}%)`;
+  aside4.style.backgroundColor = `hsl(${h + 20},${s - 50}%,${l}%)`;
 }

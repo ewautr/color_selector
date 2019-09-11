@@ -4,24 +4,22 @@ html {
   font-size: 10px;
 }
 
+html * {
+  transition: all 0.3s;
+}
+
 body {
+  width: 80%;
+  margin: 20vh auto;
   font-size: 1.5rem;
   color: rgb(197, 197, 197);
   font-family: "Helvetica Neue", sans-serif;
+  font-weight: 300;
   text-transform: uppercase;
   text-align: center;
-}
 
-.container {
-  width: 20rem;
-  height: 25rem;
-  background-color: #5e5069;
-  padding: 2rem;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 label {
@@ -33,13 +31,55 @@ input[type="color"] {
   border: none;
   outline: none;
   padding: 0;
-  background-color: #5e5069;
+  background-color: #27212c;
+  width: 3rem;
+  height: 3rem;
+  margin-left: 3rem;
+  transform: translateY(0.4rem);
 }
 
 .colorCircle {
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   background-color: #9aefe8;
   margin: 2rem auto;
   border-radius: 50%;
+}
+
+.colorCircle__aside {
+  width: 10rem;
+  height: 10rem;
+  background-color: #27212c;
+  margin: 2rem auto;
+  border-radius: 50%;
+}
+
+.palDiv {
+  position: absolute;
+  top: 7rem;
+  left: 35%;
+}
+
+.labelAndImput {
+  position: absolute;
+  top: 3rem;
+  left: 35%;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+
+  margin-left: 2rem;
+  display: inline-block;
+  background-color: #27212c;
+  border-radius: 0;
+  font-size: 1rem;
+  border: 1px solid rgb(197, 197, 197);
+  line-height: 1.3rem;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  padding: 0.5rem 1rem;
+  color: rgb(197, 197, 197);
+  transition: all 0.2s;
+  outline: none;
 }
