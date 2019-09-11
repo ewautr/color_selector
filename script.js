@@ -8,6 +8,7 @@ const aside2 = document.querySelector(".aside2");
 const aside3 = document.querySelector(".aside3");
 const aside4 = document.querySelector(".aside4");
 const option = document.querySelector("select");
+const asideHsl = document.querySelectorAll(".aside-hsl");
 
 document.querySelectorAll("#pal").forEach(option => {
   option.addEventListener("change", init);
