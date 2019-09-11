@@ -9,12 +9,17 @@ const aside3 = document.querySelector(".aside3");
 const aside4 = document.querySelector(".aside4");
 const option = document.querySelector("select");
 
+document.querySelectorAll("#pal").forEach(option => {
+  option.addEventListener("change", init);
+});
+
 inputField.addEventListener("input", init);
 
 function init() {
   displayColorBox();
   displayHEX();
   displayRGB();
+  displayHSL();
 }
 
 function displayColorBox() {
@@ -27,9 +32,20 @@ function displayHEX() {
 }
 
 function displayRGB() {
-  document.querySelector(".rgb").innerHTML = `RGB: (${hexToRgb(
-    inputField.value
-  )})`;
+  let r = hexToRgb(inputField.value).r;
+  let g = hexToRgb(inputField.value).g;
+  let b = hexToRgb(inputField.value).b;
+  document.querySelector(".rgb").innerHTML = `RGB: (${r}, ${g}, ${b})`;
+}
+
+function displayHSL() {
+  let r = hexToRgb(inputField.value).r;
+  let g = hexToRgb(inputField.value).g;
+  let b = hexToRgb(inputField.value).b;
+  let h = rgbToHsl(r, g, b).h;
+  let s = rgbToHsl(r, g, b).s;
+  let l = rgbToHsl(r, g, b).l;
+  document.querySelector(".hsl").innerHTML = `HSL: (${h}, ${s}%, ${l}%)`;
 }
 
 function hexToRgb(h) {
@@ -41,9 +57,7 @@ function hexToRgb(h) {
   g = "0x" + h[3] + h[4];
   b = "0x" + h[5] + h[6];
 
-  rgbToHsl(r, g, b);
-
-  return +r + ", " + +g + ", " + +b;
+  return { r: +r, g: +g, b: +b };
 }
 
 function rgbToHsl(r, g, b) {
@@ -85,24 +99,22 @@ function rgbToHsl(r, g, b) {
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
-  document.querySelector(".hsl").innerHTML = `HSL: (${h}, ${s}%, ${l}%)`;
+  changePalette();
 
-  document.querySelectorAll("#pal").forEach(option => {
-    option.addEventListener("change", changePallette);
-  });
+  function changePalette() {
+    let value = document.querySelector("#pal").value;
 
-  function changePallette() {
-    if (this.value === "analogus") {
+    if (value === "analogus") {
       displayAnalogHSL(h, s, l);
-    } else if (this.value === "monochromatic") {
+    } else if (value === "monochromatic") {
       displayMonochromeHSL(h, s, l);
-    } else if (this.value === "triad") {
+    } else if (value === "triad") {
       displayTriadHSL(h, s, l);
-    } else if (this.value === "complementary") {
+    } else if (value === "complementary") {
       displayComplementHSL(h, s, l);
-    } else if (this.value === "compound") {
+    } else if (value === "compound") {
       displayCompoundHSL(h, s, l);
-    } else if (this.value === "shades") {
+    } else if (value === "shades") {
       displayShadesHSL(h, s, l);
     } else {
       altColors.forEach(color => {
@@ -110,6 +122,8 @@ function rgbToHsl(r, g, b) {
       });
     }
   }
+
+  return { h, s, l };
 }
 
 // ---------COLOR PALLETTE FUNCTIONS ---------------
